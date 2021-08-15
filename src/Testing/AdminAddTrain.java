@@ -34,14 +34,14 @@ public class AdminAddTrain extends JFrame implements ActionListener{
     JTextField txtTnum=new JTextField();
     JTextField txtSource=new JTextField();
     JTextField txtDestination=new JTextField();
-    JTextField txtArrivalHour=new JTextField();
-    JTextField txtArrivalMin=new JTextField();
-    JTextField txtDepatureHour=new JTextField();
-    JTextField txtDepatureMin=new JTextField();
-    JTextField txtDuration=new JTextField();
-    JTextField txtDistance=new JTextField();
-    JTextField txtDate=new JTextField();
-    JTextField txtAmount=new JTextField();
+    JTextField txtArrivalHour=new HintTextField("HH");
+    JTextField txtArrivalMin=new HintTextField("MM");
+    JTextField txtDepatureHour=new HintTextField("HH");
+    JTextField txtDepatureMin=new HintTextField("MM");
+    JTextField txtDuration=new HintTextField("(in Hours)");
+    JTextField txtDistance=new HintTextField("(in Kms)");
+    JTextField txtDate=new HintTextField("DD/MM/YYYY");
+    JTextField txtAmount=new HintTextField("(in Rs)");
     JTextField txtSeats=new JTextField();
     
     String[] merideians ={"A.M","P.M"};
