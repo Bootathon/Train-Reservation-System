@@ -10,66 +10,85 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
-class Login extends JFrame implements ActionListener {
+class Login implements ActionListener {
+    JFrame frame;
+    
     public static String LogInUserName="";
-    Container container=getContentPane();
+    JPanel pnlLogin=new JPanel();
     JLabel lblUser=new JLabel("USERNAME");
     JLabel lblPass=new JLabel("PASSWORD");
     JTextField txtUser=new JTextField();
     JPasswordField txtPass=new JPasswordField();
     JButton btnLogin=new JButton("LOGIN");
 //    JButton resetButton=new JButton("RESET");
-    JCheckBox showPassword=new JCheckBox("Show P"
-            + "assword");
+    JCheckBox showPassword=new JCheckBox("Show Password");
+    JButton btnForgotPassword=new JButton("Forgot Password?");
+    JLabel lblDiv=new JLabel("/");
+    JButton btnRegister =new JButton("New User? Register");
 
-
-    Login()
+    Login(JFrame frame)
     {
        //Calling methods inside constructor.
+        this.frame=frame;
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();
-        setTitle("Login Form");
-        setVisible(true);
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);
+        frame.setTitle("Login Form");
+        frame.setVisible(true);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
         addActionEvent();
-
+        setColor();
+        frame.add(pnlLogin);
     }
    public void setLayoutManager()
    {
-       container.setLayout(null);
+       pnlLogin.setLayout(null);
    }
    public void setLocationAndSize()
    {
        //Setting location and Size of each components using setBounds() method.
        lblUser.setBounds(50*15,150*2,100,30);
-       lblPass.setBounds(50*15,220*2,100,30);
+       lblPass.setBounds(50*15,200*2,100,30);
        txtUser.setBounds(150*7,150*2,150,30);
-       txtPass.setBounds(150*7,220*2,150,30);
-       showPassword.setBounds(150*7,250*2,150,30);
-       btnLogin.setBounds(60*15,300*2,100,30);
+       txtPass.setBounds(150*7,200*2,150,30);
+       showPassword.setBounds(150*7,220*2,150,30);
+       btnLogin.setBounds(57*15,280*2,200,30);
 //       resetButton.setBounds(200,300,100,30);
-
+       btnForgotPassword.setBounds(50*15,320*2,180,30);
+       lblDiv.setBounds(53*18,320*2,10,30);
+       btnRegister.setBounds(52*19,320*2,200,30);
 
    }
    public void addComponentsToContainer()
    {
       //Adding each components to the Container
-       container.add(lblUser);
-       container.add(lblPass);
-       container.add(txtUser);
-       container.add(txtPass);
-       container.add(showPassword);
-       container.add(btnLogin);
+       pnlLogin.add(lblUser);
+       pnlLogin.add(lblPass);
+       pnlLogin.add(txtUser);
+       pnlLogin.add(txtPass);
+       pnlLogin.add(showPassword);
+       pnlLogin.add(btnLogin);
 //       container.add(resetButton);
+        pnlLogin.add(btnForgotPassword);
+        pnlLogin.add(lblDiv);
+        pnlLogin.add(btnRegister);
    }
-   
+   public void setColor()
+   {
+       btnForgotPassword.setBorderPainted(false);
+       btnForgotPassword.setBackground(Color.WHITE);
+       btnForgotPassword.setForeground(Color.BLUE);
+       btnRegister.setBorderPainted(false);
+       btnRegister.setBackground(Color.WHITE);
+       btnRegister.setForeground(Color.BLUE);
+   }
    public void addActionEvent()
    {
        btnLogin.addActionListener(this);
        showPassword.addActionListener(this);
+       btnForgotPassword.addActionListener(this);
    }
 
     @Override
@@ -123,12 +142,16 @@ class Login extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null,exception.toString());
             }
         }
+        if(e.getSource() == btnForgotPassword)
+        {
+            pnlLogin.setVisible(false);
+            new ForgotPassword(frame);
+        }
     }
 
     
     public static void main(String args[])
     {
-           new Login();
+           new Login(new JFrame());
     }
 }
-
